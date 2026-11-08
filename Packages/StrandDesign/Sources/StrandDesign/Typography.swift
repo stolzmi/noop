@@ -8,7 +8,8 @@ import AppKit
 // MARK: - Strand Typography (§9.2)
 //
 // SF Rounded follows the supplied reference's friendly Apple-native geometry. Tabular digits keep live
-// metrics stable, while named text styles retain Dynamic Type scaling. SF Mono remains reserved for logs.
+// metrics stable, while named text styles retain Dynamic Type scaling. SF Mono is reserved for logs and,
+// since the 2026-11 "Dot" refresh, for the ALL-CAPS overline labels (`label`).
 //
 // All numeric styles use `.monospacedDigit()` so live values don't reflow.
 
@@ -90,6 +91,17 @@ public enum StrandFont {
         #endif
     }
 
+    /// Dot label 11 / Medium, SF Mono — the "Dot" refresh's ALL-CAPS section and metric label (the
+    /// Nothing-style instrument readout). Used by `strandOverline()`; pair with `labelTracking`. Scales
+    /// with Dynamic Type (relative to `.caption2`). Monospaced uppercase is no wider than the rounded
+    /// semibold overline it replaces at this size, so labels in narrow tiles keep their fit.
+    /// Twin: Android `NoopType.label`.
+    public static let label = Font.system(.caption2, design: .monospaced, weight: .medium)
+
+    /// Tracking for `label` (≈ 0.05em) — tighter than `overlineTracking`'s use on the rounded face,
+    /// because a monospaced face already spaces every glyph evenly.
+    public static let labelTracking: CGFloat = 0.6
+
     /// Mono 13 (SF Mono) — raw / log views. Tabular by nature.
     public static let mono = Font.system(size: 13, weight: .regular, design: .monospaced)
 
@@ -120,10 +132,10 @@ public enum StrandFont {
 // MARK: - Text helpers
 
 public extension Text {
-    /// Style as an overline label: ALL-CAPS, bold, +1.4 tracking, tertiary text.
+    /// Style as an overline label: ALL-CAPS, monospaced (`StrandFont.label`), secondary text.
     func strandOverline() -> some View {
-        self.font(StrandFont.overline)
-            .tracking(StrandFont.overlineTracking)
+        self.font(StrandFont.label)
+            .tracking(StrandFont.labelTracking)
             .textCase(.uppercase)
             .foregroundStyle(StrandPalette.textSecondary)
     }

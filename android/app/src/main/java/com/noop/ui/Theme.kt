@@ -85,19 +85,28 @@ object Palette {
     val accent get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accent
         AccentColor.WHOOP_BLUE -> if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)
+        AccentColor.SIGNAL_RED -> if (isLight) SIGNAL_RED_LIGHT else SIGNAL_RED_DARK
         AccentColor.CUSTOM -> AccentColor.parseHex(AccentPrefs.customHex, active.accent)
     }
     val accentHover get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accentHover
         AccentColor.WHOOP_BLUE -> if (isLight) Color(0xFF3A6FC0) else Color(0xFF8FBEEC)
+        AccentColor.SIGNAL_RED -> if (isLight) Color(0xFFE0393F) else Color(0xFFFF6B6F)
         AccentColor.CUSTOM -> AccentColor.lighten(AccentPrefs.customHex)
     }
     val accentMuted get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accentMuted
         AccentColor.WHOOP_BLUE -> (if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)).copy(alpha = 0.18f)
+        AccentColor.SIGNAL_RED -> (if (isLight) SIGNAL_RED_LIGHT else SIGNAL_RED_DARK).copy(alpha = 0.18f)
         AccentColor.CUSTOM -> AccentColor.parseHex(AccentPrefs.customHex, active.accent).copy(alpha = 0.18f)
     }
     val focusRing get() = if (AccentPrefs.color == AccentColor.MINT) active.focusRing else accent
+
+    // The "Signal Red" chrome accent (Dot preset) — twin of NoopVisualStyle.signalRed. 5.9:1 on the light
+    // card, 4.4:1 on the dark card.
+    private val SIGNAL_RED_LIGHT = Color(0xFFC8161D)
+    private val SIGNAL_RED_DARK = Color(0xFFF0393F)
+
     const val disabledOpacity = 0.45f
 
     // Recovery / Charge gradient.
@@ -493,6 +502,15 @@ object NoopType {
     val overline = TextStyle(
         fontFamily = sans, fontWeight = FontWeight.Bold, fontSize = 11.sp,
         letterSpacing = 1.4.sp,
+    )
+
+    /** Dot label 11 / Medium, monospaced, +1.0 tracking — the "Dot" refresh's ALL-CAPS section and
+     *  metric label (uppercase at the use site; [Overline] does it). Monospaced uppercase at this size is
+     *  narrower than the bold sans overline it replaces, so labels in narrow tiles keep their fit.
+     *  Twin of StrandFont.label. */
+    val label = TextStyle(
+        fontFamily = monoFamily, fontWeight = FontWeight.Medium, fontSize = 11.sp,
+        letterSpacing = 1.0.sp,
     )
 
     /** Mono 13 — raw / log views. */

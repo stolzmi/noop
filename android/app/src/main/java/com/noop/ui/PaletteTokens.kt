@@ -102,9 +102,11 @@ data class PaletteTokens(
 // Titanium column byte-for-byte: blue-grey canvas, WHOOP red→yellow→green recovery, green Charge,
 // blue Effort, slate Rest, amber Stress. NO gold anywhere — accent/gold tokens point to WHOOP blue.
 val DarkTokens = PaletteTokens(
-    surfaceBase = Color(0xFF121518), surfaceRaised = Color(0xFF25292C), surfaceOverlay = Color(0xFF1C1F26),
-    surfaceInset = Color(0xFF1F2229), hairline = Color(0xFF21304A), hairlineStrong = Color(0xFF2E3C57),
-    textPrimary = Color(0xFFF4F6F8), textSecondary = Color(0xFFC8CFD8), textTertiary = Color(0xFF8A94A4),
+    // "Dot" refresh (2026-11): hue-free monochrome neutrals, twin of NoopVisualStyle's dark column — a
+    // near-black canvas, charcoal cards, neutral hairlines. Text holds ≥ the old contrast on every surface.
+    surfaceBase = Color(0xFF0B0B0C), surfaceRaised = Color(0xFF1A1A1C), surfaceOverlay = Color(0xFF1E1E21),
+    surfaceInset = Color(0xFF131315), hairline = Color(0xFF2A2A2D), hairlineStrong = Color(0xFF3A3A3E),
+    textPrimary = Color(0xFFF5F5F2), textSecondary = Color(0xFFB4B4AF), textTertiary = Color(0xFF8A8A84),
     glowAmbient = Color(0xFF3A2D0A),
     // Brand accent → mint, parity with iOS #1068 (NoopVisualStyle.mint/mintGlow). accentMuted is a dark
     // teal muted surface (green-shifted analog of the old navy 0xFF16233A). Gold stays in the recovery world.
@@ -120,19 +122,21 @@ val DarkTokens = PaletteTokens(
     effortColor = Color(0xFF4090E0), effortDeep = Color(0xFF2A6FB0), effortBright = Color(0xFF74B6F0), effortGlow = Color(0xFF4090E0),
     restColor = Color(0xFF83A0B8), restDeep = Color(0xFF2F6FCB), restBright = Color(0xFF6FA8E8), restGlow = Color(0xFF4A90E2),
     stressColor = Color(0xFFF0A020), stressDeep = Color(0xFF4A90E2), stressBright = Color(0xFFE0662F), stressGlow = Color(0xFFF0A020),
-    scenicCenter = Color(0xFF1C2128), scenicEdge = Color(0xFF121518), scenicStar = Color(0xFFC8CFD8),
-    cardFillTop = Color(0xFF15243C), cardFillBottom = Color(0xFF0B1424),
+    scenicCenter = Color(0xFF18181A), scenicEdge = Color(0xFF0B0B0C), scenicStar = Color(0xFFC8C8C4),
+    cardFillTop = Color(0xFF1E1E21), cardFillBottom = Color(0xFF1A1A1C),
     gold = Color(0xFF60A0E0), goldLight = Color(0xFF9FC8F0), goldDeep = Color(0xFF3A78C8),
     goldDeepText = Color(0xFFFFFFFF), signalYellow = Color(0xFFFFD63D),
     titaniumTop = Color(0xFFF1F3F5), titaniumMid = Color(0xFFC9CFD4), titaniumLow = Color(0xFF969DA4), titaniumDeep = Color(0xFF6B737B),
     tipCore = Color(0xFFFFFFFF),
-    heroFill = Color(0xCC0D0E14), heroBorder = Color(0x1CFFFFFF),
+    heroFill = Color(0xCC0E0E10), heroBorder = Color(0x1CFFFFFF),
 )
 
 val LightTokens = PaletteTokens(
-    surfaceBase = Color(0xFFEAE3D4), surfaceRaised = Color(0xFFFFFFFF), surfaceOverlay = Color(0xFFFFFFFF),
-    surfaceInset = Color(0xFFDFD8C8), hairline = Color(0xFFD8D0BD), hairlineStrong = Color(0xFFC7BCA4),
-    textPrimary = Color(0xFF1A2230), textSecondary = Color(0xFF4C5564), textTertiary = Color(0xFF7C8696),
+    // "Dot" refresh (2026-11): neutral off-white paper instead of the warm paper, twin of NoopVisualStyle's
+    // light column. White cards, neutral ink; tertiary text 5.1:1 on the card (was 3.6:1).
+    surfaceBase = Color(0xFFF2F2EF), surfaceRaised = Color(0xFFFFFFFF), surfaceOverlay = Color(0xFFFFFFFF),
+    surfaceInset = Color(0xFFE6E6E2), hairline = Color(0xFFDCDCD7), hairlineStrong = Color(0xFFC9C9C3),
+    textPrimary = Color(0xFF111112), textSecondary = Color(0xFF4E4E4A), textTertiary = Color(0xFF6E6E69),
     glowAmbient = Color(0xFFF0E4C0),
     // Light chrome accent → brand mint, parity with iOS #1068 (NoopVisualStyle.mint/mintGlow, light side).
     // accentMuted is a pale mint tint (green-shifted analog of the old pale blue 0xFFE4ECF6); note Android's
@@ -149,8 +153,8 @@ val LightTokens = PaletteTokens(
     effortColor = Color(0xFFB26A1C), effortDeep = Color(0xFF7E460E), effortBright = Color(0xFFD89240), effortGlow = Color(0xFFB26A1C),
     restColor = Color(0xFF3A80D6), restDeep = Color(0xFF234F9E), restBright = Color(0xFF5790DA), restGlow = Color(0xFF3A80D6),
     stressColor = Color(0xFFB88421), stressDeep = Color(0xFF3A80D6), stressBright = Color(0xFFC84E1E), stressGlow = Color(0xFFB88421),
-    scenicCenter = Color(0xFFFBF6EA), scenicEdge = Color(0xFFEDE6D6), scenicStar = Color(0xFFD8CDB6),
-    cardFillTop = Color(0xFFFFFFFF), cardFillBottom = Color(0xFFFAF7F0),
+    scenicCenter = Color(0xFFFAFAF8), scenicEdge = Color(0xFFECECE8), scenicStar = Color(0xFFD6D6D0),
+    cardFillTop = Color(0xFFFFFFFF), cardFillBottom = Color(0xFFFAFAF8),
     gold = Color(0xFFDBA52A), goldLight = Color(0xFFECC766), goldDeep = Color(0xFF9A6B12),
     goldDeepText = Color(0xFF3A2708), signalYellow = Color(0xFFE8A800),
     titaniumTop = Color(0xFFDDE1E6), titaniumMid = Color(0xFFBBC2C9), titaniumLow = Color(0xFF98A0A8), titaniumDeep = Color(0xFF6B737B),
@@ -330,6 +334,8 @@ object AppearancePrefs {
 enum class AccentColor(val storageValue: String, val label: String) {
     MINT("mint", "Mint"),
     WHOOP_BLUE("whoopBlue", "WHOOP Blue"),
+    /** The "Dot" preset's single saturated red over monochrome chrome. Twin of Swift `.signalRed`. */
+    SIGNAL_RED("signalRed", "Red"),
     CUSTOM("custom", "Custom");
 
     companion object {
@@ -408,6 +414,8 @@ enum class ThemePreset(
     CLASSIC("classic", "Classic", AccentColor.WHOOP_BLUE, ChartStyle.CLASSIC, true, 100),
     MIDNIGHT("midnight", "Midnight", AccentColor.MINT, ChartStyle.TITANIUM, false, 100),
     FROSTED("frosted", "Frosted", AccentColor.MINT, ChartStyle.TITANIUM, true, 85),
+    /** Nothing-inspired: signal-red accent over the monochrome chrome, plain canvas. Twin of Swift `.dot`. */
+    DOT("dot", "Dot", AccentColor.SIGNAL_RED, ChartStyle.TITANIUM, false, 100),
     CUSTOM("custom", "Custom", null, null, true, 100);
 
     companion object {
