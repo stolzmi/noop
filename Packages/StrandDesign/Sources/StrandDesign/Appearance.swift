@@ -90,6 +90,7 @@ public extension View {
 public enum AccentColor: String, CaseIterable, Identifiable, Sendable {
     case mint        // the brand default (#1068 NoopVisualStyle.mint world)
     case whoopBlue   // the classic WHOOP link blue
+    case signalRed   // the "Dot" preset's single saturated red over monochrome chrome
     case custom      // a user-picked colour (hex stored separately)
 
     public var id: String { rawValue }
@@ -103,6 +104,7 @@ public enum AccentColor: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .mint:      return String(localized: "Mint", bundle: .module)
         case .whoopBlue: return String(localized: "WHOOP Blue", bundle: .module)
+        case .signalRed: return String(localized: "Red", bundle: .module)
         case .custom:    return String(localized: "Custom", bundle: .module)
         }
     }
@@ -114,6 +116,7 @@ public enum AccentColor: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .mint:      return NoopVisualStyle.mint
         case .whoopBlue: return Color(light: "#234F9E", dark: "#60A0E0")
+        case .signalRed: return NoopVisualStyle.signalRed
         case .custom:    return Color(hex: StrandPalette.customAccentHex)
         }
     }
@@ -123,6 +126,7 @@ public enum AccentColor: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .mint:      return NoopVisualStyle.mintGlow
         case .whoopBlue: return Color(light: "#3A6FC0", dark: "#8FBEEC")
+        case .signalRed: return NoopVisualStyle.signalRedGlow
         case .custom:    return AccentColor.lighten(StrandPalette.customAccentHex)
         }
     }
@@ -133,6 +137,7 @@ public enum AccentColor: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .mint:      return NoopVisualStyle.mintDeep.opacity(0.18)
         case .whoopBlue: return Color(light: "#234F9E", dark: "#60A0E0").opacity(0.18)
+        case .signalRed: return NoopVisualStyle.signalRed.opacity(0.18)
         case .custom:    return Color(hex: StrandPalette.customAccentHex).opacity(0.18)
         }
     }
@@ -171,6 +176,7 @@ public enum ThemePreset: String, CaseIterable, Identifiable, Sendable {
     case classic    // WHOOP-blue accent, Classic throwback charts, backdrop on, solid
     case midnight   // mint accent, Titanium charts, backdrop OFF (plain canvas), solid
     case frosted    // mint accent, Titanium charts, backdrop on, translucent cards
+    case dot        // Nothing-inspired: signal-red accent, Titanium charts, backdrop OFF, solid cards
     case custom     // sentinel: the live combination matches no preset
 
     public var id: String { rawValue }
@@ -182,6 +188,7 @@ public enum ThemePreset: String, CaseIterable, Identifiable, Sendable {
         case .classic:  return String(localized: "Classic", bundle: .module)
         case .midnight: return String(localized: "Midnight", bundle: .module)
         case .frosted:  return String(localized: "Frosted", bundle: .module)
+        case .dot:      return String(localized: "Dot", bundle: .module)
         case .custom:   return String(localized: "Custom", bundle: .module)
         }
     }
@@ -203,6 +210,7 @@ public enum ThemePreset: String, CaseIterable, Identifiable, Sendable {
         case .classic:  return Recipe(accent: .whoopBlue, chart: .classic,  backdrop: true,  cardOpacity: 100)
         case .midnight: return Recipe(accent: .mint,      chart: .titanium, backdrop: false, cardOpacity: 100)
         case .frosted:  return Recipe(accent: .mint,      chart: .titanium, backdrop: true,  cardOpacity: 85)
+        case .dot:      return Recipe(accent: .signalRed, chart: .titanium, backdrop: false, cardOpacity: 100)
         case .custom:   return nil
         }
     }

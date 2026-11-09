@@ -20,7 +20,7 @@ class BrandSleepRampTest {
 
     // Palette.surfaceRaised — the card the stepped hypnogram is drawn on.
     private val lightSurface = 0xFFFFFFFF
-    private val darkSurface = 0xFF2A2C34
+    private val darkSurface = 0xFF1A1A1C
 
     private fun luminance(argb: Long): Double {
         fun lin(v: Double) = if (v <= 0.04045) v / 12.92 else ((v + 0.055) / 1.055).pow(2.4)

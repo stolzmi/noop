@@ -116,7 +116,7 @@ public enum StrandPalette {
     // Light, so the hero fits in with the other cards. Its own text uses the regular text*/tint tokens
     // (which flip) — NOT onDark*, which stays fixed for the genuinely-always-dark SKY backdrop
     // (ScreenScaffold's over-sky title). 8-digit hex = RRGGBBAA (alpha last).
-    public static let heroFill   = Color(light: "FFFFFFD9", dark: "0D0E14CC")
+    public static let heroFill   = Color(light: "FFFFFFD9", dark: "0E0E10CC")
     public static let heroBorder = Color(light: "0000001A", dark: "FFFFFF1C")
 
     // MARK: Glow — ambient bloom behind heroes / charts (additive on dark; faint warm on light)
@@ -317,14 +317,15 @@ public enum StrandPalette {
 
     // MARK: Scenic background (NEW) — detail-screen hero gradient + starfield.
     /// Radial canvas: lit center → deep edge. Used by `ScenicHeroBackground` (warm-lit on light).
-    public static let scenicCenter     = Color(light: "#FBF6EA", dark: "#1C2128")
-    public static let scenicEdge       = Color(light: "#EDE6D6", dark: "#121518")
+    public static let scenicCenter     = Color(light: "#FAFAF8", dark: "#18181A")
+    public static let scenicEdge       = Color(light: "#ECECE8", dark: "#0B0B0C")
     /// Star tint for the scenic starfield (very faint on light; the hero suppresses stars there).
-    public static let scenicStar       = Color(light: "#D8CDB6", dark: "#C8CFD8")
+    public static let scenicStar       = Color(light: "#D6D6D0", dark: "#C8C8C4")
 
-    /// Frosted-card tint endpoints (white→warm on light; the accent wash sits over them).
-    public static let cardFillTop      = Color(light: "#FFFFFF", dark: "#15243C")
-    public static let cardFillBottom   = Color(light: "#FAF7F0", dark: "#0B1424")
+    /// Frosted-card tint endpoints (the accent wash sits over them). Neutral charcoal / white since the
+    /// 2026-11 "Dot" refresh, matching `NoopVisualStyle.surfaceTop`/`surface`.
+    public static let cardFillTop      = Color(light: "#FFFFFF", dark: "#1E1E21")
+    public static let cardFillBottom   = Color(light: "#FAFAF8", dark: "#1A1A1C")
 
     // MARK: - Titanium & Gold core tokens (NEW)
     //

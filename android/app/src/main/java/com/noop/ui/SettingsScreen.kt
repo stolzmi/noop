@@ -1605,9 +1605,12 @@ fun SettingsScreen(
             // colours follow "Chart colours", never this. Custom reveals RGB sliders.
             SettingsFormRow(label = uiString(R.string.l10n_settings_screen_accent)) {
                 SegmentedPillControl(
-                    items = listOf(AccentColor.MINT, AccentColor.WHOOP_BLUE, AccentColor.CUSTOM),
+                    items = listOf(AccentColor.MINT, AccentColor.WHOOP_BLUE, AccentColor.SIGNAL_RED, AccentColor.CUSTOM),
                     selection = accentColor,
                     label = { it.label },
+                    // Four options since Signal Red (Dot refresh): share the row equally rather than
+                    // letting intrinsic label widths push the card past a narrow screen.
+                    adaptsToAvailableWidth = true,
                     onSelect = { c ->
                         accentColor = c
                         AccentPrefs.setColor(context, c)
